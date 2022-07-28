@@ -1,5 +1,6 @@
 package com.techelevator.application;
 
+import com.techelevator.Reader.InventoryBuilder;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
 
@@ -14,7 +15,7 @@ public class VendingMachine {
 
             System.out.println(choice);
             if(choice.equals("display")) {
-                // display the items
+                InventoryBuilder inventoryBuilder = new InventoryBuilder();
             }
             else if(choice.equals("purchase")) {
                 // make a purchase

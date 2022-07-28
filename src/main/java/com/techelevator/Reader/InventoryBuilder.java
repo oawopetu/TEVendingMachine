@@ -17,7 +17,7 @@ public class InventoryBuilder {
 
         System.out.print("What is the source file?: ");
         String sourceFile = cateringFileInput.nextLine();
-        File file = new File(sourceFile);
+        File file = new File("catering.csv");
         Map<String, Item> inventory = new HashMap<>();
 
         try(Scanner fileScanner = new Scanner(file)){

@@ -1,5 +1,7 @@
 package com.techelevator.ui;
 
+import com.techelevator.Reader.InventoryBuilder;
+
 import java.util.Scanner;
 
 /**
