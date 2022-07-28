@@ -2,6 +2,8 @@ package com.techelevator.Reader;
 
 import com.techelevator.Inventory.*;
 
+import com.techelevator.Inventory.Item;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
