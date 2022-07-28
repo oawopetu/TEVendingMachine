@@ -30,6 +30,15 @@ public class UserOutput {
         System.out.println("M) Feed money");
         System.out.println("S) Select item");
         System.out.println("F) Finish transaction");
+        System.out.println("");
+        System.out.println("Current Money Provided: $");
+
+    }
+    public static void displayFeedMoneyOptions(){
+        System.out.println("(1) Enter $1");
+        System.out.println("(2) Enter $5");
+        System.out.println("(3) Enter $10");
+        System.out.println("(4) Enter $20");
 
     }
 }
