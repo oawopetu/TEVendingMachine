@@ -15,10 +15,6 @@ public class InventoryBuilder {
 
     public Map<String, Item> getInventory(){
 
-        Scanner cateringFileInput = new Scanner(System.in);
-
-        System.out.print("What is the source file?: ");
-        String sourceFile = cateringFileInput.nextLine();
         File file = new File("catering.csv");
         Map<String, Item> inventory = new HashMap<>();
 
@@ -38,6 +34,7 @@ public class InventoryBuilder {
                 item.setType(splitCurrentLine[3]);
                 item.setPrice(new BigDecimal(splitCurrentLine[2]));
                 item.setName(splitCurrentLine[1]);
+
                 inventory.put(splitCurrentLine[0],item);
 
             }

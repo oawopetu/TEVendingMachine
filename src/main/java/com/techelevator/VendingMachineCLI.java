@@ -1,13 +1,14 @@
 package com.techelevator;
 
 
+import com.techelevator.Reader.InventoryBuilder;
 import com.techelevator.application.VendingMachine;
 
 public class VendingMachineCLI {
 
 	public static void main(String[] args) {
-
-		VendingMachine vendingMachine = new VendingMachine();
+		InventoryBuilder inventoryBuilder = new InventoryBuilder();
+		VendingMachine vendingMachine = new VendingMachine(inventoryBuilder);
 		vendingMachine.run();
 	}
 }

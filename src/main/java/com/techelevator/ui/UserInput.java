@@ -28,17 +28,33 @@ public class UserInput {
         System.out.println("option = " + option);
         if (option.equals("d")) {
             return "display";
-        }
-        else if (option.equals("p")) {
+        } else if (option.equals("p")) {
             return "purchase";
-        }
-        else if (option.equals("e")) {
+        } else if (option.equals("e")) {
             return "exit";
-        }
-        else {
+        } else {
             return "";
         }
-
     }
-}
+
+        public String getPurchaseOption(){
+
+            System.out.println();
+            System.out.print("Please select an option: ");
+
+            String purchaseOption = scanner.nextLine();
+            String purchaseOptionSelected = purchaseOption.trim().toLowerCase();
+            System.out.println("option = " + purchaseOptionSelected);
+            if (purchaseOptionSelected.equals("m")) {
+                return "feed money";
+            } else if (purchaseOptionSelected.equals("s")) {
+                return "select item";
+            } else if (purchaseOptionSelected.equals("f")) {
+                return "finish";
+            } else {
+                return "";
+            }
+
+        }
+    }
 

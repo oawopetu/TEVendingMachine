@@ -5,7 +5,7 @@ import com.techelevator.Inventory.Item;
 import java.util.Map;
 
 public class UserOutput {
-    public void displayMessage(String message) {
+    public static void displayMessage(String message) {
         System.out.println();
         System.out.println(message);
         System.out.println();
@@ -23,5 +23,13 @@ public class UserOutput {
         for (Map.Entry<String, Item> itemEntry : inventory.entrySet()) {
             System.out.println("[" + itemEntry.getKey() + "] " + itemEntry.getValue().getName() + " : " + itemEntry.getValue().getPrice());
         }
+
+    }
+
+    public static void displayPurchaseOptions(){
+        System.out.println("M) Feed money");
+        System.out.println("S) Select item");
+        System.out.println("F) Finish transaction");
+
     }
 }
