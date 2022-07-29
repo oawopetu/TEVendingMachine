@@ -3,14 +3,14 @@ package com.techelevator.Currency;
 import java.math.BigDecimal;
 
 public class Money {
-    private BigDecimal moneyProvided;
+    private int moneyProvided;
 
 
-    public BigDecimal getMoneyProvided() {
+    public int getMoneyProvided() {
         return moneyProvided;
     }
 
-    public void setMoneyProvided(BigDecimal moneyProvided) {
+    public void setMoneyProvided(int moneyProvided) {
         this.moneyProvided = moneyProvided;
     }
 

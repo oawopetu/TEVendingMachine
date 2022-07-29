@@ -20,8 +20,10 @@ public class UserOutput {
     }
 
     public static void displayInventoryItems(Map<String, Item> inventory) {
+        System.out.println("Item number             Item             Price");
         for (Map.Entry<String, Item> itemEntry : inventory.entrySet()) {
-            System.out.println("[" + itemEntry.getKey() + "] " + itemEntry.getValue().getName() + " " + itemEntry.getValue().getPrice());
+            System.out.println("-----------------------------------------");
+            System.out.println("[" + itemEntry.getKey() + "]  " + itemEntry.getValue().getName() + "     $" + itemEntry.getValue().getPrice());
         }
 
     }
