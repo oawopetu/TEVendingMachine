@@ -6,4 +6,8 @@ public class Munchy extends Item {
         super(slotLocation);
 
     }
+    @Override
+    public String getSaying() {
+        return "Munchy, Munchy, so Good!";
+    }
 }

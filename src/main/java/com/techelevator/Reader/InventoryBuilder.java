@@ -45,4 +45,18 @@ public class InventoryBuilder {
         }return inventory;
 
     }
+    public int getCount() {
+        return count;
+    }
+
+    private int count = 6;
+
+    public void buyItem(int amountToBuy){
+        if(amountToBuy>count){
+            //what will we tell customer if they ask for too much
+        }else{
+            count= count - amountToBuy;
+        }
+    }
+
 }

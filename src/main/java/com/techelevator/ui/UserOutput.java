@@ -31,6 +31,7 @@ public class UserOutput {
         for (Map.Entry<String, Item> itemEntry : inventory.entrySet()) {
             System.out.println("-----------------------------------------");
             System.out.println("[" + itemEntry.getKey() + "]  " + itemEntry.getValue().getName() + "     $" + itemEntry.getValue().getPrice());
+
         }
 
     }
@@ -41,7 +42,7 @@ public class UserOutput {
         System.out.println("S) Select item");
         System.out.println("F) Finish transaction");
         System.out.println("");
-
+        System.out.println("Your current balance is $" );
 
     }
     public static void displayFeedMoneyOptions(){

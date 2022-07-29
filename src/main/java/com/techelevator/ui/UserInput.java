@@ -4,6 +4,7 @@ import com.techelevator.Inventory.Item;
 import com.techelevator.Reader.InventoryBuilder;
 import com.techelevator.Currency.Money;
 
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -18,7 +19,7 @@ public class UserInput {
     public int getMoneyProvided() {
         return moneyProvided;
     }
-    Item item = new Item();
+
 
 
 
@@ -93,7 +94,9 @@ public class UserInput {
             } else if (feedMoneySelection.equals("r")) {
                 return "purchase";
             } else{
-                System.out.println("Please enter a valid request ");
+                System.out.println("<------------------------>");
+                System.out.println("PLEASE ENTER VALID REQUEST ");
+                System.out.println("<------------------------>");
             }
                 System.out.println("Your current balance is $" + moneyProvided);
 
@@ -101,12 +104,13 @@ public class UserInput {
         }
     }
 
-    public String getItemSelection(){
+    public String getItemSelection(Map<String,Item> inventory){
         System.out.println();
         System.out.print("Please enter the slot number of your most desired treat:");
         String itemSelected = scanner.nextLine();
         String itemChoice = itemSelected.trim().toLowerCase();
-        System.out.println(" You chose" + item.);
+
+        System.out.println(" You chose" );
         UserOutput.displayFeedMoneyOptions();
 
 

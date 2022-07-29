@@ -35,8 +35,7 @@ public class VendingMachine {
             System.out.println(choice);
             if (choice.equals("display")) {
                 UserOutput.displayInventoryItems(inventory);
-                System.out.println();
-                System.out.println("Your current balance is $" + moneyProvided);
+
                 userOutput.displayHomeScreen();
                 choice = userInput.getHomeScreenOption();
             } else if (choice.equals("purchase")) {
@@ -45,11 +44,14 @@ public class VendingMachine {
                     String purchaseChoice = userInput.getPurchaseOption();
                     if (purchaseChoice.equals("feed money")) {
                         UserOutput.displayFeedMoneyOptions();
-                        System.out.println("Your current balance is $" + moneyProvided);
+
                         choice = userInput.getFeedMoneyOptions();
                     } else if(purchaseChoice.equals("select item")){
                         UserOutput.displayInventoryItems(inventory);
+                    String userChoice = "A1";
+                    inventory.get(userChoice).buyItem(1);
 
+                        System.out.println(inventory.get(userChoice).getCount());
 
                     }
 

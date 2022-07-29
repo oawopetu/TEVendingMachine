@@ -8,6 +8,21 @@ public abstract class Item {
     private String name;
     private String slotLocation;
     private String type;
+    private String saying;
+
+    public int getCount() {
+        return count;
+    }
+
+    private int count = 6;
+
+    public void buyItem(int amountToBuy){
+        if(amountToBuy>count){
+            //what will we tell customer if they ask for too much
+        }else{
+            count= count - amountToBuy;
+        }
+    }
 
 
     //constructor
@@ -43,6 +58,9 @@ public abstract class Item {
         this.type = type;
     }
 
+    public String getSaying() {
+        return saying;
+    }
 
 
 }
