@@ -48,6 +48,7 @@ public class UserInput {
             System.out.println("option = " + purchaseOptionSelected);
             if (purchaseOptionSelected.equals("m")) {
                 UserOutput.displayFeedMoneyOptions();
+                System.out.println(getFeedMoneyOptions());
             } else if (purchaseOptionSelected.equals("s")) {
                 return "select item";
             } else if (purchaseOptionSelected.equals("f")) {
@@ -78,7 +79,7 @@ public class UserInput {
             return "Please enter a valid request ";
         }
 
-            return "";
+            return "Current Money provided is $" + moneyProv;
         }
     }
 

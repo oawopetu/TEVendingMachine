@@ -21,7 +21,7 @@ public class UserOutput {
 
     public static void displayInventoryItems(Map<String, Item> inventory) {
         for (Map.Entry<String, Item> itemEntry : inventory.entrySet()) {
-            System.out.println("[" + itemEntry.getKey() + "] " + itemEntry.getValue().getName() + " : " + itemEntry.getValue().getPrice());
+            System.out.println("[" + itemEntry.getKey() + "] " + itemEntry.getValue().getName() + " " + itemEntry.getValue().getPrice());
         }
 
     }
@@ -31,7 +31,7 @@ public class UserOutput {
         System.out.println("S) Select item");
         System.out.println("F) Finish transaction");
         System.out.println("");
-        System.out.println("Current Money Provided: $");
+
 
     }
     public static void displayFeedMoneyOptions(){

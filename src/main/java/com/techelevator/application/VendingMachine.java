@@ -30,7 +30,8 @@ public class VendingMachine {
                 UserOutput.displayPurchaseOptions();
                 String purchaseChoice = userInput.getPurchaseOption();
                 System.out.println(purchaseChoice);
-                
+
+
 
 
 //                UserOutput.displayMessage("Enter the slot location of the treat you wish to purchase: ");
