@@ -12,6 +12,13 @@ import java.util.Scanner;
  */
 public class UserInput {
     private Scanner scanner = new Scanner(System.in);
+    Money money = new Money();
+    private int moneyProvided;
+    public int getMoneyProvided() {
+        return moneyProvided;
+    }
+
+
 
     public String getHomeScreenOption() {
         System.out.println("What would you like to do?");
@@ -38,48 +45,58 @@ public class UserInput {
         }
     }
 
-        public String getPurchaseOption(){
-
-            System.out.println();
-            System.out.print("Please select an option: ");
-
-            String purchaseOption = scanner.nextLine();
-            String purchaseOptionSelected = purchaseOption.trim().toLowerCase();
-            System.out.println("option = " + purchaseOptionSelected);
-            if (purchaseOptionSelected.equals("m")) {
-                UserOutput.displayFeedMoneyOptions();
-                System.out.println(getFeedMoneyOptions());
-            } else if (purchaseOptionSelected.equals("s")) {
-                return "select item";
-            } else if (purchaseOptionSelected.equals("f")) {
-                return "finish";
-            } else {
-                return "";
-            }
-            return "";
-
-        }
-
-        public String getFeedMoneyOptions(){
+    public String getPurchaseOption() {
 
         System.out.println();
-        System.out.print("Select option number to  enter the  money desired.");
-        String purchaseOptionSelected = scanner.nextLine();
-        System.out.println(" You entered option = " + purchaseOptionSelected);
-        int moneyProv =0;
-        if (purchaseOptionSelected.equals("1")) {
-             moneyProv +=1 ;
-        } else if (purchaseOptionSelected.equals("2")) {
-            moneyProv +=5 ;
-        } else if (purchaseOptionSelected.equals("3")) {
-            moneyProv +=10 ;
-        } else if (purchaseOptionSelected.equals("4")) {
-            moneyProv +=20;
+        System.out.print("Please select an option: ");
+
+        String purchaseOption = scanner.nextLine();
+        String purchaseOptionSelected = purchaseOption.trim().toLowerCase();
+        System.out.println("option = " + purchaseOptionSelected);
+        if (purchaseOptionSelected.equals("m")) {
+            return "feed money";
+        } else if (purchaseOptionSelected.equals("s")) {
+            return "select item";
+        } else if (purchaseOptionSelected.equals("f")) {
+            return "finish";
         } else {
-            return "Please enter a valid request ";
+            return "";
         }
 
-            return "Current Money provided is $" + moneyProv;
+
+    }
+
+
+
+    public String getFeedMoneyOptions() {
+
+        while (true) {
+            System.out.println();
+            System.out.print("Select option number to  enter the  money desired.");
+            String purchaseOptionSelected = scanner.nextLine();
+            String feedMoneySelection = purchaseOptionSelected.trim().toLowerCase();
+            System.out.println(" You entered option = " + purchaseOptionSelected);
+            UserOutput.displayFeedMoneyOptions();
+
+
+
+            if (purchaseOptionSelected.equals("1")) {
+                moneyProvided += 1;
+            } else if (purchaseOptionSelected.equals("2")) {
+                moneyProvided += 5;
+            } else if (purchaseOptionSelected.equals("3")) {
+                moneyProvided += 10;
+            } else if (purchaseOptionSelected.equals("4")) {
+                moneyProvided += 20;
+            } else if (feedMoneySelection.equals("r")) {
+                return "purchase";
+            } else{
+                System.out.println("Please enter a valid request ");
+            }
+                System.out.println("Your current balance is $" + moneyProvided);
+
+
         }
     }
 
+}

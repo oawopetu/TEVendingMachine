@@ -1,10 +1,17 @@
 package com.techelevator.ui;
 
+import com.techelevator.Currency.Money;
 import com.techelevator.Inventory.Item;
 
 import java.util.Map;
 
 public class UserOutput {
+    Money money = new Money();
+    private int moneyProvided;
+    public int getMoneyProvided() {
+        return moneyProvided;
+    }
+
     public static void displayMessage(String message) {
         System.out.println();
         System.out.println(message);
@@ -29,6 +36,7 @@ public class UserOutput {
     }
 
     public static void displayPurchaseOptions(){
+
         System.out.println("M) Feed money");
         System.out.println("S) Select item");
         System.out.println("F) Finish transaction");
@@ -41,6 +49,11 @@ public class UserOutput {
         System.out.println("(2) Enter $5");
         System.out.println("(3) Enter $10");
         System.out.println("(4) Enter $20");
+        System.out.println("(R) return to previous menu");
 
     }
+
+
+
 }
+
