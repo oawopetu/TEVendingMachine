@@ -1,5 +1,6 @@
 package com.techelevator.ui;
 
+import com.techelevator.Inventory.Item;
 import com.techelevator.Reader.InventoryBuilder;
 import com.techelevator.Currency.Money;
 
@@ -17,6 +18,7 @@ public class UserInput {
     public int getMoneyProvided() {
         return moneyProvided;
     }
+    Item item = new Item();
 
 
 
@@ -101,10 +103,10 @@ public class UserInput {
 
     public String getItemSelection(){
         System.out.println();
-        System.out.print("Select option number to  enter the  money desired.");
-        String purchaseOptionSelected = scanner.nextLine();
-        String feedMoneySelection = purchaseOptionSelected.trim().toLowerCase();
-        System.out.println(" You entered option = " + purchaseOptionSelected);
+        System.out.print("Please enter the slot number of your most desired treat:");
+        String itemSelected = scanner.nextLine();
+        String itemChoice = itemSelected.trim().toLowerCase();
+        System.out.println(" You chose" + item.);
         UserOutput.displayFeedMoneyOptions();
 
 
