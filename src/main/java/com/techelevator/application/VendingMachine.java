@@ -50,6 +50,7 @@ public class VendingMachine {
                     } else if(purchaseChoice.equals("select item")){
                         UserOutput.displayInventoryItems(inventory);
 
+
                     }
 
 

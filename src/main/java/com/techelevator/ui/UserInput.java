@@ -99,4 +99,16 @@ public class UserInput {
         }
     }
 
+    public String getItemSelection(){
+        System.out.println();
+        System.out.print("Select option number to  enter the  money desired.");
+        String purchaseOptionSelected = scanner.nextLine();
+        String feedMoneySelection = purchaseOptionSelected.trim().toLowerCase();
+        System.out.println(" You entered option = " + purchaseOptionSelected);
+        UserOutput.displayFeedMoneyOptions();
+
+
+        return "";
+    }
+
 }
