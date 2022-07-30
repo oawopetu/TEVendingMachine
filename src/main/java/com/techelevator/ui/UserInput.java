@@ -106,6 +106,7 @@ public class UserInput {
         UserOutput.displayInventoryItems(inventory);
         System.out.println();
         System.out.print("Please enter the slot number of your most desired treat:");
+        //TODO if customer enters invalid slot
         String itemSelected = scanner.nextLine();
         String itemChoice = itemSelected.trim().toUpperCase();
         System.out.println("Please enter the quantity you desire: ");

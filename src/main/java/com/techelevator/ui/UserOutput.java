@@ -40,7 +40,7 @@ public class UserOutput {
     }
 
     public static void displayPurchaseOptions(){
-
+        System.out.println();
         System.out.println("M) Feed money");
         System.out.println("S) Select item");
         System.out.println("F) Finish transaction");
@@ -53,12 +53,16 @@ public class UserOutput {
         System.out.println("(2) Enter $5");
         System.out.println("(3) Enter $10");
         System.out.println("(4) Enter $20");
-        System.out.println("(R) return to previous menu");
+        System.out.println("(5) return to previous menu");
+        System.out.println();
 
     }
 
-    public static void currentBalance(int moneyProvided){
-        System.out.println("Your current balance is $" + moneyProvided);
+    public static void currentBalance(double getMoneyProvided){
+        System.out.println("Your current balance is $" + getMoneyProvided);
+    }
+    public static void displayItemMessage(){
+        System.out.println("You chose "  );
     }
 
 

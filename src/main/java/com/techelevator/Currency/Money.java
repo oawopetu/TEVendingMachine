@@ -1,27 +1,35 @@
 package com.techelevator.Currency;
 
+import com.techelevator.Inventory.Item;
+
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Money {
-    private int moneyProvided;
+    private double balance;
 
-    public Money(int moneyProvided) {
-        this.moneyProvided = moneyProvided;
+
+//    public void moneyRemaining (int )
+
+   public void moneyRemaining(Item inputItem ){
+        new BigDecimal(balance+ "").subtract(inputItem.getPrice()) ;
+
+   }
+
+    public Money() {
+        this.balance = 0;
     }
 
-    public int getMoneyProvided() {
-        return moneyProvided;
+    public double getBalance() {
+        return balance;
     }
 
-    public void setMoneyProvided(int moneyProvided) {
-        this.moneyProvided = moneyProvided;
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 
- public int moneyIn(int userFunds){
-        moneyProvided += userFunds;
-        return moneyProvided;
+ public double moneyIn(int userFunds){
+        balance += userFunds;
+        return balance;
  }
 //money provided incrementation processes
 
