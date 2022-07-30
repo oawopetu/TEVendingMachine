@@ -8,12 +8,13 @@ import com.techelevator.ui.UserOutput;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class VendingMachine {
     UserInput userInput = new UserInput();
     UserOutput userOutput = new UserOutput();
 
-    //    private int moneyProvided;
+
     Money money = new Money(getMoneyProvided());
 
     public int getMoneyProvided() {
@@ -48,15 +49,15 @@ public class VendingMachine {
                 if (purchaseChoice.equals("feed money")) {
                     UserOutput.displayFeedMoneyOptions();
                     userInput.getFeedMoneyOptions();
-                    if (userInput.getFeedMoneyOptions() == "1") {
+                    if (Objects.equals(userInput.getFeedMoneyOptions(), "1")) {
                         money.moneyIn(1);
-                    } else if (userInput.getFeedMoneyOptions() == "5") {
+                    } else if (Objects.equals(userInput.getFeedMoneyOptions(), "5")) {
                         money.moneyIn(5);
-                    } else if (userInput.getFeedMoneyOptions() == "10") {
+                    } else if (Objects.equals(userInput.getFeedMoneyOptions(), "10")) {
                         money.moneyIn(10);
-                    } else if (userInput.getFeedMoneyOptions() == "20") {
+                    } else if (Objects.equals(userInput.getFeedMoneyOptions(), "20")) {
                         money.moneyIn(20);
-
+                    }
                     } else if (purchaseChoice.equals("select item")) {
                         userInput.getItemSelection(inventory);
                         UserOutput.currentBalance(money.getMoneyProvided());
@@ -74,4 +75,3 @@ public class VendingMachine {
             }
         }
     }
-}
