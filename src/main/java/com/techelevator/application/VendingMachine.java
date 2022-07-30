@@ -6,6 +6,7 @@ import com.techelevator.Reader.InventoryBuilder;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -61,6 +62,8 @@ public class VendingMachine {
                     } else if (purchaseChoice.equals("select item")) {
                         userInput.getItemSelection(inventory);
                         UserOutput.currentBalance(money.getMoneyProvided());
+                        //this should probably be in money
+//                    BigDecimal.valueOf(money.getMoneyProvided()).subtract(inventory.get(userInput.getItemSelection(inventory.(itemChoice))).getPrice());
 
 
                     }

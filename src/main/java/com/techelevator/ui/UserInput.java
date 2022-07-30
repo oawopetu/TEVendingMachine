@@ -114,8 +114,8 @@ public class UserInput {
         inventory.get(itemChoice).buyItem(numberOrdered);
         System.out.println(" You chose " + quantityEntered + " " +  inventory.get(itemChoice).getName() + " at " + "$" + inventory.get(itemChoice).getPrice());
         System.out.println("your total price is " + (inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered))));
-        //the next line isn't subtracting for some reason. I think it's because money provided is resetting.
-      //  BigDecimal.valueOf(moneyProvided).subtract(inventory.get(itemChoice).getPrice());
+        
+
 
 
 
