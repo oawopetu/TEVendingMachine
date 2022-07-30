@@ -6,11 +6,14 @@ import com.techelevator.Inventory.Item;
 import java.util.Map;
 
 public class UserOutput {
-    Money money = new Money();
-    private int moneyProvided;
-    public int getMoneyProvided() {
-        return moneyProvided;
-    }
+
+    public int moneyProvided;
+
+ private int getMoneyProvided(){
+     return moneyProvided;
+}
+    UserInput userInput = new UserInput();
+
 
     public static void displayMessage(String message) {
         System.out.println();
@@ -18,7 +21,7 @@ public class UserOutput {
         System.out.println();
     }
 
-    public void displayHomeScreen() {
+    public static void displayHomeScreen() {
         System.out.println();
         System.out.println("***************************************************");
         System.out.println("                      Home");
@@ -42,7 +45,7 @@ public class UserOutput {
         System.out.println("S) Select item");
         System.out.println("F) Finish transaction");
         System.out.println("");
-        System.out.println("Your current balance is $" );
+
 
     }
     public static void displayFeedMoneyOptions(){
@@ -54,6 +57,12 @@ public class UserOutput {
 
     }
 
+    public static void currentBalance(int moneyProvided){
+        System.out.println("Your current balance is $" + moneyProvided);
+    }
+
+
+//System.out.println(inventory.get().getCount());
 
 
 }

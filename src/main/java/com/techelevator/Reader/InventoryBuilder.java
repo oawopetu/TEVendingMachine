@@ -25,12 +25,12 @@ public class InventoryBuilder {
                 String currentLine = fileScanner.nextLine();
                 String[] splitCurrentLine = currentLine.split(",");
                 if(splitCurrentLine[3].equals("Munchy")) {
-                    item = new Munchy(splitCurrentLine[0]);
+                    item = new Munchy(splitCurrentLine[0].toLowerCase());
                 }else if(splitCurrentLine[3].equals("Drink")){
-                    item = new Drink(splitCurrentLine[0]);
+                    item = new Drink(splitCurrentLine[0].toLowerCase());
                 }else if(splitCurrentLine[3].equals("Candy")){
-                    item = new Candy(splitCurrentLine[0]);
-                }else{item = new Gum(splitCurrentLine[0]);
+                    item = new Candy(splitCurrentLine[0].toLowerCase());
+                }else{item = new Gum(splitCurrentLine[0].toLowerCase());
                 }
                 item.setType(splitCurrentLine[3]);
                 item.setPrice(new BigDecimal(splitCurrentLine[2]));

@@ -12,11 +12,14 @@ import java.util.Map;
 public class VendingMachine {
     UserInput userInput = new UserInput();
     UserOutput userOutput = new UserOutput();
-    Money money = new Money();
-    private int moneyProvided;
+
+    //    private int moneyProvided;
+    Money money = new Money(getMoneyProvided());
+
     public int getMoneyProvided() {
-        return moneyProvided;
+        return money.getMoneyProvided();
     }
+
 
     private Map<String, Item> inventory = new HashMap<>();
 
@@ -26,44 +29,49 @@ public class VendingMachine {
 
 
     public void run() {
-        userOutput.displayHomeScreen();
+        UserOutput.displayHomeScreen();
         String choice = userInput.getHomeScreenOption();
-        System.out.println("Your current balance is $" + moneyProvided);
 
         while (true) {
 
             System.out.println(choice);
             if (choice.equals("display")) {
                 UserOutput.displayInventoryItems(inventory);
-
-                userOutput.displayHomeScreen();
+                UserOutput.displayHomeScreen();
                 choice = userInput.getHomeScreenOption();
+
             } else if (choice.equals("purchase")) {
-                    UserOutput.displayPurchaseOptions();
-//                System.out.println("Your current balance is $" + moneyProvided);
-                    String purchaseChoice = userInput.getPurchaseOption();
-                    if (purchaseChoice.equals("feed money")) {
-                        UserOutput.displayFeedMoneyOptions();
+                UserOutput.displayPurchaseOptions();
+                UserOutput.currentBalance(money.getMoneyProvided());
+                String purchaseChoice = userInput.getPurchaseOption();
 
-                        choice = userInput.getFeedMoneyOptions();
-                    } else if(purchaseChoice.equals("select item")){
-                        UserOutput.displayInventoryItems(inventory);
-                    String userChoice = "A1";
-                    inventory.get(userChoice).buyItem(1);
+                if (purchaseChoice.equals("feed money")) {
+                    UserOutput.displayFeedMoneyOptions();
+                    userInput.getFeedMoneyOptions();
+                    if (userInput.getFeedMoneyOptions() == "1") {
+                        money.moneyIn(1);
+                    } else if (userInput.getFeedMoneyOptions() == "5") {
+                        money.moneyIn(5);
+                    } else if (userInput.getFeedMoneyOptions() == "10") {
+                        money.moneyIn(10);
+                    } else if (userInput.getFeedMoneyOptions() == "20") {
+                        money.moneyIn(20);
 
-                        System.out.println(inventory.get(userChoice).getCount());
+                    } else if (purchaseChoice.equals("select item")) {
+                        userInput.getItemSelection(inventory);
+                        UserOutput.currentBalance(money.getMoneyProvided());
+
 
                     }
-
 
 //                UserOutput.displayMessage("Enter the slot location of the treat you wish to purchase: ");
 //                String itemKey = UserInput.getItemKeyUserSelected();
 //                UserOutput.displayMessage("You selected " + inventory.get(itemKey).getName() + " at a price of: $ " + inventory.get(itemKey).getPrice());
-                }
-            else if (choice.equals("exit")) {
+                } else if (choice.equals("exit")) {
                     // good bye
                     break;
                 }
             }
         }
     }
+}

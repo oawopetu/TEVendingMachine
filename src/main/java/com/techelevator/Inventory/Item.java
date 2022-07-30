@@ -10,7 +10,13 @@ public abstract class Item {
     private String type;
     private String saying;
 
-    public int getCount() {
+
+    //constructor
+    public Item(String slotLocation) {
+        this.slotLocation = slotLocation;
+    }
+
+    public  int getCount() {
         return count;
     }
 
@@ -18,17 +24,14 @@ public abstract class Item {
 
     public void buyItem(int amountToBuy){
         if(amountToBuy>count){
-            //what will we tell customer if they ask for too much
+            System.out.println("Please select a smaller amount.");//what will we tell customer if they ask for too much
         }else{
             count= count - amountToBuy;
         }
     }
 
 
-    //constructor
-    public Item(String slotLocation) {
-        this.slotLocation = slotLocation;
-    }
+
 
     public BigDecimal getPrice() {
         return price;
