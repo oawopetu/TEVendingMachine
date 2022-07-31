@@ -5,32 +5,40 @@ import com.techelevator.Inventory.Item;
 import java.math.BigDecimal;
 
 public class Money {
-    private double balance;
+    private BigDecimal balance;
 
 
 //    public void moneyRemaining (int )
 
-   public void moneyRemaining(Item inputItem ){
-        new BigDecimal(balance+ "").subtract(inputItem.getPrice()) ;
 
+
+//   public void moneyRemaining(Item inputItem ){
+//        new BigDecimal(balance+ "").subtract(inputItem.getPrice()) ;
+
+//   }
+   public void moneyRemaining2( BigDecimal itemPrice){
+      this.balance =(this.balance).subtract(itemPrice) ;
    }
 
     public Money() {
-        this.balance = 0;
+        this.balance = new BigDecimal(0);
     }
 
-    public double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
-        this.balance = balance;
-    }
 
- public double moneyIn(int userFunds){
-        balance += userFunds;
+
+ public BigDecimal moneyIn(double userFunds){
+        this.balance =this.balance.add(new BigDecimal(userFunds)) ;
         return balance;
+
  }
+ public void customerChange(){
+
+ }
+
 //money provided incrementation processes
 
 

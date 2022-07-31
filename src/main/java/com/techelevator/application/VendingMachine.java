@@ -6,6 +6,7 @@ import com.techelevator.Reader.InventoryBuilder;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -17,7 +18,7 @@ public class VendingMachine {
 
     Money money = new Money();
 
-    public double getMoneyProvided() {
+    public BigDecimal getMoneyProvided() {
         return money.getBalance();
     }
 
@@ -27,6 +28,8 @@ public class VendingMachine {
     public VendingMachine(InventoryBuilder inventoryBuilder) {
         inventory = inventoryBuilder.getInventory();
     }
+
+    InventoryBuilder inventoryBuilder = new InventoryBuilder();
 
 
     public void run() {
@@ -43,6 +46,7 @@ public class VendingMachine {
 
             } else if (choice.equals("purchase")) {
                 choice = purchaseMenu(choice);
+
             } else if (choice.equals("exit")) {
                 // good bye
                 break;
@@ -74,12 +78,14 @@ public class VendingMachine {
                 choice = "purchase";
             }
         } else if (purchaseChoice.equals("select item")) {
-            userInput.getItemSelection(inventory);
+            userInput.getItemSelection(inventory,money);
+
             UserOutput.currentBalance(money.getBalance());
             //this should probably be in money
 //                    BigDecimal.valueOf(money.getMoneyProvided()).subtract(inventory.get(userInput.getItemSelection(inventory.(itemChoice))).getPrice());
-
-
+        }
+        else{
+           UserOutput.invalidRequest();
         }
 
 //                UserOutput.displayMessage("Enter the slot location of the treat you wish to purchase: ");

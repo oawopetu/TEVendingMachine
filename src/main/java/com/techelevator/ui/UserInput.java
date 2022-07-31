@@ -15,8 +15,7 @@ import java.util.Scanner;
  */
 public class UserInput {
     private Scanner scanner = new Scanner(System.in);
-
-
+    InventoryBuilder inventoryBuilder = new InventoryBuilder();
 
 
 
@@ -67,7 +66,6 @@ public class UserInput {
     }
 
 
-
     public String getFeedMoneyOptions() {
 
         while (true) {
@@ -79,10 +77,9 @@ public class UserInput {
             UserOutput.displayFeedMoneyOptions();
 
 
-
             if (purchaseOptionSelected.equals("1")) {
-               return "1";
-            } else  if (purchaseOptionSelected.equals("2")) {
+                return "1";
+            } else if (purchaseOptionSelected.equals("2")) {
                 return "5";
             } else if (purchaseOptionSelected.equals("3")) {
                 return "10";
@@ -90,18 +87,17 @@ public class UserInput {
                 return "20";
             } else if (feedMoneySelection.equals("5")) {
                 return "purchase";
-            } else{
-                System.out.println("<------------------------>");
-                System.out.println("PLEASE ENTER VALID REQUEST ");
-                System.out.println("<------------------------>");
+            } else {
+                UserOutput.invalidRequest();
             }
-
 
 
         }
     }
 
-    public String getItemSelection(Map<String,Item> inventory){
+//passing in map and money object
+
+    public String getItemSelection(Map<String, Item> inventory, Money money) {
 //this whole method is functional now. I'm not
         UserOutput.displayInventoryItems(inventory);
         System.out.println();
@@ -109,20 +105,24 @@ public class UserInput {
         //TODO if customer enters invalid slot
         String itemSelected = scanner.nextLine();
         String itemChoice = itemSelected.trim().toUpperCase();
-        System.out.println("Please enter the quantity you desire: ");
-        String quantityEntered = scanner.nextLine();
-        int numberOrdered = Integer.parseInt(quantityEntered);
-        inventory.get(itemChoice).buyItem(numberOrdered);
-        System.out.println(" You chose " + quantityEntered + " " +  inventory.get(itemChoice).getName() + " at " + "$" + inventory.get(itemChoice).getPrice());
-        System.out.println("your total price is " + (inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered))));
-        
+        if (inventoryBuilder.getInventory().containsKey(itemChoice)) {
 
+            System.out.println("Please enter the quantity you desire: ");
+            String quantityEntered = scanner.nextLine();
+            int numberOrdered = Integer.parseInt(quantityEntered);
 
+            inventory.get(itemChoice).buyItem(numberOrdered);
+            System.out.println("You chose " + quantityEntered + " " + inventory.get(itemChoice).getName() + " at " + "$" + inventory.get(itemChoice).getPrice());
+            System.out.println("Your total price is " + (inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered))));
+            money.moneyRemaining2(inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered)));
+
+        } else {
+            UserOutput.invalidRequest();
+            getItemSelection(inventory,money);
+        }
 
 
         return "";
+
     }
-
-
-
 }

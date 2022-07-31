@@ -3,15 +3,16 @@ package com.techelevator.ui;
 import com.techelevator.Currency.Money;
 import com.techelevator.Inventory.Item;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 public class UserOutput {
 
-    public int moneyProvided;
-
- private int getMoneyProvided(){
-     return moneyProvided;
-}
+//    public int moneyProvided;
+//
+// private int getMoneyProvided(){
+//     return moneyProvided;
+//}
     UserInput userInput = new UserInput();
 
 
@@ -58,13 +59,30 @@ public class UserOutput {
 
     }
 
-    public static void currentBalance(double getMoneyProvided){
+//    public static void displayCurrentBalance(){
+//        System.out.println();
+//        System.out.println("Your current balance is $ "  );
+//    }
+
+    public static void currentBalance(BigDecimal getMoneyProvided){
+
         System.out.println("Your current balance is $" + getMoneyProvided);
+
     }
+
+//    public static void currentBalance(double getMoneyProvided){
+//        System.out.println("Your current balance is $" + getMoneyProvided);
+//    }
     public static void displayItemMessage(){
         System.out.println("You chose "  );
     }
 
+
+    public static void invalidRequest(){
+        System.out.println("<------------------------>");
+        System.out.println("PLEASE ENTER VALID REQUEST ");
+        System.out.println("<------------------------>");
+    }
 
 //System.out.println(inventory.get().getCount());
 
