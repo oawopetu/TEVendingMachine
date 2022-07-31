@@ -3,8 +3,11 @@ package com.techelevator.ui;
 import com.techelevator.Inventory.Item;
 import com.techelevator.Reader.InventoryBuilder;
 import com.techelevator.Currency.Money;
+import com.techelevator.Writer.AuditLog;
 
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -17,7 +20,7 @@ public class UserInput {
     private Scanner scanner = new Scanner(System.in);
     InventoryBuilder inventoryBuilder = new InventoryBuilder();
 
-
+    AuditLog audit = new AuditLog();
 
     public String getHomeScreenOption() {
         System.out.println("What would you like to do?");
@@ -97,12 +100,15 @@ public class UserInput {
 
 //passing in map and money object
 
-    public String getItemSelection(Map<String, Item> inventory, Money money) {
-//this whole method is functional now. I'm not
+    public String getItemSelection(Map<String, Item> inventory, Money money) throws FileNotFoundException {
+
         UserOutput.displayInventoryItems(inventory);
         System.out.println();
         System.out.print("Please enter the slot number of your most desired treat:");
         //TODO if customer enters invalid slot
+        BigDecimal startingBalance = money.getBalance();
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        numberFormat.setMinimumFractionDigits(2);
         String itemSelected = scanner.nextLine();
         String itemChoice = itemSelected.trim().toUpperCase();
         if (inventoryBuilder.getInventory().containsKey(itemChoice)) {
@@ -115,7 +121,8 @@ public class UserInput {
             System.out.println("You chose " + quantityEntered + " " + inventory.get(itemChoice).getName() + " at " + "$" + inventory.get(itemChoice).getPrice());
             System.out.println("Your total price is " + (inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered))));
             money.moneyRemaining2(inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered)));
-
+            System.out.println(inventory.get(itemChoice).getSaying());
+            audit.auditLog(" " + inventory.get(itemChoice).getName() + " " + inventory.get(itemChoice).getSlotLocation() + " $" + numberFormat.format(startingBalance) + " $" + money.getBalance().toString());
         } else {
             UserOutput.invalidRequest();
             getItemSelection(inventory,money);
@@ -125,4 +132,6 @@ public class UserInput {
         return "";
 
     }
+
+
 }
