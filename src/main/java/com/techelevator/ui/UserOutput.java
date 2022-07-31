@@ -84,6 +84,19 @@ public class UserOutput {
         System.out.println("<------------------------>");
     }
 
+    public static void outOfStock(){
+        System.out.println("<------------------------>");
+        System.out.println("   Out of Stock ");
+        System.out.println("<------------------------>");
+    }
+
+    public static void enterMoreMoney(){
+        System.out.println("<------------------------>");
+        System.out.println("   Insufficient funds ");
+        System.out.println("<------------------------>");
+    }
+
+
 //    public static void changeReport(Money money){
 //        System.out.println("Your Change is: " + );
 //    }

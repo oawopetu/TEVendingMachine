@@ -19,6 +19,7 @@ import java.util.Scanner;
 public class UserInput {
     private Scanner scanner = new Scanner(System.in);
     InventoryBuilder inventoryBuilder = new InventoryBuilder();
+    Item item;
 
     AuditLog audit = new AuditLog();
 
@@ -111,27 +112,39 @@ public class UserInput {
         numberFormat.setMinimumFractionDigits(2);
         String itemSelected = scanner.nextLine();
         String itemChoice = itemSelected.trim().toUpperCase();
+
+
         if (inventoryBuilder.getInventory().containsKey(itemChoice)) {
 
             System.out.println("Please enter the quantity you desire: ");
             String quantityEntered = scanner.nextLine();
             int numberOrdered = Integer.parseInt(quantityEntered);
+            boolean noMore = numberOrdered <= item.getCount();
+//            boolean notEnoughMoney =money.getBalance().compareTo( inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered)))>=0);
+            if (numberOrdered <= item.getCount() &&
+                    money.getBalance().compareTo(inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered))) >= 0) {
 
-            inventory.get(itemChoice).buyItem(numberOrdered);
-            System.out.println("You chose " + quantityEntered + " " + inventory.get(itemChoice).getName() + " at " + "$" + inventory.get(itemChoice).getPrice());
-            System.out.println("Your total price is " + (inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered))));
-            money.moneyRemaining2(inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered)));
-            System.out.println(inventory.get(itemChoice).getSaying());
-            audit.auditLog(" " + inventory.get(itemChoice).getName() + " " + inventory.get(itemChoice).getSlotLocation() + " $" + numberFormat.format(startingBalance) + " $" + money.getBalance().toString());
+                inventory.get(itemChoice).buyItem(numberOrdered);
+                System.out.println("You chose " + quantityEntered + " " + inventory.get(itemChoice).getName() + " at " + "$" + inventory.get(itemChoice).getPrice());
+                System.out.println("Your total price is " + (inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered))));
+                money.moneyRemaining2(inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered)));
+                System.out.println(inventory.get(itemChoice).getSaying());
+                audit.auditLog(" " + inventory.get(itemChoice).getName() + " " + inventory.get(itemChoice).getSlotLocation() + " $" + numberFormat.format(startingBalance) + " $" + money.getBalance().toString());
+            } else if (!noMore) {
+                UserOutput.outOfStock();
+            } else {
+                UserOutput.invalidRequest();
+            }
+
         } else {
             UserOutput.invalidRequest();
-            getItemSelection(inventory,money);
-        }
-
-
-        return "";
+            getItemSelection(inventory, money);
+        } return "";
 
     }
+
+
+
 
 
 }

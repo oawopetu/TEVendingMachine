@@ -1,5 +1,7 @@
 package com.techelevator.Inventory;
 
+import com.techelevator.application.VendingMachine;
+
 import java.math.BigDecimal;
 
 public abstract class Item {
@@ -9,6 +11,7 @@ public abstract class Item {
     private String slotLocation;
     private String type;
     private String saying;
+
 
 
     //constructor
@@ -24,6 +27,7 @@ public abstract class Item {
 
     public void buyItem(int amountToBuy){
         if(amountToBuy>count){
+
             System.out.println("Please select a smaller amount.");//what will we tell customer if they ask for too much
         }else{
             count= count - amountToBuy;
