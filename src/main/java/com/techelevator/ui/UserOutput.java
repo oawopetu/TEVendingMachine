@@ -85,9 +85,9 @@ public class UserOutput {
     }
 
     public static void outOfStock(){
-        System.out.println("<------------------------>");
-        System.out.println("   Out of Stock ");
-        System.out.println("<------------------------>");
+        System.out.println("<----------------------------->");
+        System.out.println(" Amount requested not available ");
+        System.out.println("<----------------------------->");
     }
 
     public static void enterMoreMoney(){

@@ -24,30 +24,34 @@ public class UserInput {
     AuditLog audit = new AuditLog();
 
     public String getHomeScreenOption() {
-        System.out.println("What would you like to do?");
-        System.out.println();
+        try {
+            System.out.println("What would you like to do?");
+            System.out.println();
 
-        System.out.println("D) Display Items");
-        System.out.println("P) Purchase");
-        System.out.println("E) Exit");
+            System.out.println("D) Display Items");
+            System.out.println("P) Purchase");
+            System.out.println("E) Exit");
 
-        System.out.println();
-        System.out.print("Please select an option: ");
+            System.out.println();
+            System.out.print("Please select an option: ");
 
-        String selectedOption = scanner.nextLine();
-        String option = selectedOption.trim().toLowerCase();
-        System.out.println("option = " + option);
-        if (option.equals("d")) {
-            return "display";
-        } else if (option.equals("p")) {
-            return "purchase";
-        } else if (option.equals("e")) {
-            return "exit";
-        } else {
-            return "";
+            String selectedOption = scanner.nextLine();
+            String option = selectedOption.trim().toLowerCase();
+            System.out.println("option = " + option);
+            if (option.equals("d")) {
+                return "display";
+            } else if (option.equals("p")) {
+                return "purchase";
+            } else if (option.equals("e")) {
+                return "exit";
+            } else {
+                return "display";
+            }
+        }catch (NumberFormatException ex){
+            System.out.println("Please enter a valid request");
+            return "Purchase";
         }
     }
-
     public String getPurchaseOption() {
 
         System.out.println();
@@ -63,7 +67,7 @@ public class UserInput {
         } else if (purchaseOptionSelected.equals("f")) {
             return "finish";
         } else {
-            return "";
+            return "display";
         }
 
 
@@ -101,48 +105,57 @@ public class UserInput {
 
 //passing in map and money object
 
-    public String getItemSelection(Map<String, Item> inventory, Money money) throws FileNotFoundException {
+    public String getItemSelection(Map<String, Item> inventory, Money money) throws FileNotFoundException, NumberFormatException {
 
-        UserOutput.displayInventoryItems(inventory);
-        System.out.println();
-        System.out.print("Please enter the slot number of your most desired treat:");
-        //TODO if customer enters invalid slot
-        BigDecimal startingBalance = money.getBalance();
-        NumberFormat numberFormat = NumberFormat.getInstance();
-        numberFormat.setMinimumFractionDigits(2);
-        String itemSelected = scanner.nextLine();
-        String itemChoice = itemSelected.trim().toUpperCase();
+        try {
+            UserOutput.displayInventoryItems(inventory);
+            System.out.println();
+            System.out.print("Please enter the slot number of your most desired treat:");
+            //TODO if customer enters invalid slot
+            BigDecimal startingBalance = money.getBalance();
+            NumberFormat numberFormat = NumberFormat.getInstance();
+            numberFormat.setMinimumFractionDigits(2);
+            String itemSelected = scanner.nextLine();
+            String itemChoice = itemSelected.trim().toUpperCase();
 
 
-        if (inventoryBuilder.getInventory().containsKey(itemChoice)) {
+            if (inventoryBuilder.getInventory().containsKey(itemChoice)) {
 
-            System.out.println("Please enter the quantity you desire: ");
-            String quantityEntered = scanner.nextLine();
-            int numberOrdered = Integer.parseInt(quantityEntered);
-            boolean noMore = numberOrdered <= item.getCount();
+                System.out.println("Please enter the quantity you desire: ");
+                String quantityEntered = scanner.nextLine();
+                int numberOrdered = Integer.parseInt(quantityEntered);
+                boolean noMore = numberOrdered <= inventory.get(itemChoice).getCount();
 //            boolean notEnoughMoney =money.getBalance().compareTo( inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered)))>=0);
-            if (numberOrdered <= item.getCount() &&
-                    money.getBalance().compareTo(inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered))) >= 0) {
+                if (numberOrdered <= inventory.get(itemChoice).getCount() &&
+                        money.getBalance().compareTo(inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered))) >= 0) {
 
-                inventory.get(itemChoice).buyItem(numberOrdered);
-                System.out.println("You chose " + quantityEntered + " " + inventory.get(itemChoice).getName() + " at " + "$" + inventory.get(itemChoice).getPrice());
-                System.out.println("Your total price is " + (inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered))));
-                money.moneyRemaining2(inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered)));
-                System.out.println(inventory.get(itemChoice).getSaying());
-                audit.auditLog(" " + inventory.get(itemChoice).getName() + " " + inventory.get(itemChoice).getSlotLocation() + " $" + numberFormat.format(startingBalance) + " $" + money.getBalance().toString());
-            } else if (!noMore) {
-                UserOutput.outOfStock();
+                    inventory.get(itemChoice).buyItem(numberOrdered);
+                    System.out.println("You chose " + quantityEntered + " " + inventory.get(itemChoice).getName() + " at " + "$" + inventory.get(itemChoice).getPrice());
+                    System.out.println("Your total price is " + (inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered))));
+                    money.moneyRemaining2(inventory.get(itemChoice).getPrice().multiply(BigDecimal.valueOf(numberOrdered)));
+                    System.out.println(inventory.get(itemChoice).getSaying());
+                    audit.auditLog(" " + inventory.get(itemChoice).getName() + " " + inventory.get(itemChoice).getSlotLocation() + " $" + numberFormat.format(startingBalance) + " $" + money.getBalance().toString());
+                } else if (!noMore) {
+                    UserOutput.outOfStock();
+                    return "purchase";
+                } else {
+                    UserOutput.enterMoreMoney();
+                    return "purchase";
+                }
             } else {
                 UserOutput.invalidRequest();
+                getItemSelection(inventory, money);
             }
 
-        } else {
-            UserOutput.invalidRequest();
-            getItemSelection(inventory, money);
-        } return "";
 
+        }catch (NumberFormatException ex){
+            System.out.println("Please enter a valid request");
+            return "Purchase";
+        }catch(NullPointerException ex){
+            System.out.println("Location does not exist");
+            return "Purchase";
+        } return "display";
     }
-
 
 
 

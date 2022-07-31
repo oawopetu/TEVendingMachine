@@ -55,6 +55,9 @@ public class VendingMachine {
             } else if (choice.equals("exit")) {
                 // good bye
                 break;
+            }else {
+                UserOutput.invalidRequest();
+                break;
             }
         }
     }
